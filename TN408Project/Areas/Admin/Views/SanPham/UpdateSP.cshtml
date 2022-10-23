@@ -1,0 +1,64 @@
+﻿@model TN408Project.DataDB.SanPham
+
+@{
+    Layout = null;
+}
+
+<form asp-action="UpdateSP1">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        Nhà sản xuất:
+        <label asp-for="MaNhaSanXuat" class="form-control" />
+        <select asp-for="MaNhaSanXuat" class="form-control" asp-items="ViewBag.temp1"></select>
+    </div>
+
+    <div class="form-group">
+        Loại sản phẩm:
+        <label asp-for="MaLoaiSanPham" class="form-control" />
+        <select asp-for="MaLoaiSanPham" class="form-control" asp-items="ViewBag.temp2"></select>
+    </div>
+
+
+    <!--Vung An -->
+    <div class="form-group d-none">
+        Tên sản phẩm:
+        <input asp-for="MaSanPham" class="form-control" required />
+        <span asp-validation-for="MaSanPham" class="text-danger"></span>
+    </div>
+    <div class="form-group d-none">
+        Giá:
+        <input asp-for="Mau" class="form-control" required />
+        <span asp-validation-for="Mau" class="text-danger"></span>
+    </div>
+    <div class="form-group d-none">
+        Mô tả:
+        <input asp-for="TrangThaiTt" class="form-control" required />
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <!--Vung An -->
+    <div class="form-group">
+        Tên sản phẩm:
+        <input asp-for="TenSanPham" class="form-control" required />
+        <span asp-validation-for="TenSanPham" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        Giá:
+        <input asp-for="Gia" class="form-control" required />
+        <span asp-validation-for="Gia" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        Mô tả:
+        <input asp-for="MoTa" class="form-control" required />
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        Số lượng:
+        <input asp-for="SoLuong" type="number" class="form-control" required />
+        <span asp-validation-for="SoLuong" class="text-danger"></span>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+    </div>
+</form>

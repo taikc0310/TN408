@@ -1,0 +1,93 @@
+﻿@model TN408Project.Models.LoginModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .login,
+        .image {
+            background-size: cover;
+            background-position: inherit;
+            height: 70vh;
+            margin-top: inherit;
+        }
+
+        .login-img {
+            object-fit: contain;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <nav class="header__menu">
+                <ul>
+                    <li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a><i class="fa fa-angle-right"></i></a></li>
+                    <li class="active"><a href="./login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        <div class="col-md-6 d-md-flex">
+            <img src="~/images/anhtraicay2.jpg" class="login-img" />
+        </div>
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <!-- Demo content-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto profile">
+                            <h3 class="display-4" style="margin-left:30%; font-weight:800">LOGIN</h3>
+
+                            <form method="post">
+
+
+                                @Html.AntiForgeryToken();
+                                @Html.ValidationSummary(true, null, new { @class = "alert-error text-danger" })
+                                <div class="form-group mb-3">
+                                    <label asp-for="TenDangNhap" for="username">Username</label>
+                                    <input asp-for="TenDangNhap" class="form-control rounded-pill border-0 shadow-sm px-4" type="text" id="username" placeholder="Username" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label asp-for="MatKhau" for="password">Password</label>
+                                    <input asp-for="MatKhau" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" type="password" id="password" placeholder="Password" />
+                                </div>
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <!--<input asp-for="Remember" type="checkbox" name="remember_me" value="remember_password" class="form-check-input width-auto" id="remember_me" />
+                                        <label asp-for="Remember" class="form-check-label" for="remember_me">Remember me</label>
+                                    -->
+                                    <label>
+                                        @Html.CheckBoxFor(model => model.Remember)
+                                        Remember
+                                    </label>
+                                    <span style="float:right">
+                                        <a href="/recovery" class="spanform">Recovery</a>
+                                    </span>
+                                </div>
+                                <div class="text-center d-flex justify-content-between mt-0">
+                                    <p>
+                                        Don't have an account? <a href="/register" class="font-italic text-muted">
+                                            <u>Register here</u>
+                                        </a>
+                                    </p>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm " style="margin-left:40%; margin-top:10px">Sign in</button>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+            </div>
+        </div><!-- End -->
+
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model TN408Project.DataDB.LoaiSanPham
+
+@{
+
+    Layout = null;
+}
+
+<form asp-area="Admin" asp-controller="SanPham" asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        Tên loại sản phẩm:
+        <input asp-for="TenLoaiSanPham" class="form-control" />
+        <span asp-validation-for="TenLoaiSanPham" class="text-danger"></span>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Thêm</button>
+    </div>
+</form>
+
+@*<p>Modal body text goes here.</p>*@

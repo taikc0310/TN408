@@ -1,0 +1,49 @@
+﻿@model TN408Project.Models.CreateSPIMG
+@{
+    Layout = null;
+}
+<form asp-area="Admin" asp-controller="SanPham" asp-action="CreateUploadFile" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        Nhà sản xuất:
+        <label asp-for="sanphamdetail.MaNhaSanXuat" class="form-control" />
+        <select asp-for="sanphamdetail.MaNhaSanXuat" class="form-control" asp-items="ViewBag.temp1"></select>
+    </div>
+
+    <div class="form-group">
+        Loại sản phẩm:
+        <label asp-for="sanphamdetail.MaLoaiSanPham" class="form-control" />
+        <select asp-for="sanphamdetail.MaLoaiSanPham" class="form-control" asp-items="ViewBag.temp2"></select>
+    </div>
+
+    <div class="form-group">
+        Tên sản phẩm:
+        <input asp-for="sanphamdetail.TenSanPham" class="form-control" required/>
+        <span asp-validation-for="sanphamdetail.TenSanPham" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        Giá:
+        <input asp-for="sanphamdetail.Gia" type="number" class="form-control" required/>
+        <span asp-validation-for="sanphamdetail.Gia" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        Mô tả:
+        <input asp-for="sanphamdetail.MoTa" class="form-control" required/>
+        <span asp-validation-for="sanphamdetail.MoTa" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        Số lượng:
+        <input asp-for="sanphamdetail.SoLuong" type="number" class="form-control" required/>
+        <span asp-validation-for="sanphamdetail.SoLuong" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="anhspdetail.LinkAnh" class="control-label">Đường dẫn</label>
+        <input type="file" name="myfile" asp-for="anhspdetail.LinkAnh" placeholder="Chọn hình ảnh sản phẩm" class="form-control" required />
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Thêm</button>
+    </div>
+</form>

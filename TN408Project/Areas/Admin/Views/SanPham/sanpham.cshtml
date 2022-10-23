@@ -1,0 +1,164 @@
+﻿@model IEnumerable<TN408Project.DataDB.SanPham>
+@{
+    ViewData["Title"] = "sanpham";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container">
+    <h1 class="mt-4">Danh sách sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a style="color: black;" asp-action="Index" asp-area="Admin" asp-controller="Home">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+    </ol>
+
+    <button class="btn btn-outline-primary them" style="margin-bottom:20px;">Thêm sản phẩm</button>
+
+
+
+    <div class="modal" id="containerModal" aria-hidden="true" style=" background:rgb(0,0,0,0.4)">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top:30%;">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="huy"></button>
+                </div>
+                <div class="modal-body" id="modal-open">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="modal-updatebigsp" aria-hidden="true" style=" background:rgb(0,0,0,0.4)">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top:30%;">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cập nhật sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="huy-update"></button>
+                </div>
+                <div class="modal-body" id="modal-updatesp">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="modal" id="containerDelete" aria-hidden="true" style="top: 300px">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm sản phẩm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="huy"></button>
+                    </div>
+                    <div class="modal-body" id="modal-delete">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+    <div class="position-fixed d-none" id="conternetDelete" style="text-align: center; background-color: #F8F8F8; height: 100px; width: 400px; left: 700px; top: 270px;">
+        <div id="modal-delete">
+
+        </div>
+        <button class="btn btn-outline-primary position-absolute  " id="huydelete" style=" width: 70px; right: 120px; top: 50px;">Hủy</button>
+    </div>
+
+
+
+
+    <table class="table" style="background:white">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-left">
+                    Mã sản phẩm
+                </th>
+                <th class="text-left">
+                    Tên sản phẩm
+                </th>
+                <th class="text-left">
+                    Giá
+                </th>
+                <th class="text-left">
+                    Số lượng
+                </th>
+                <th class="text-center">
+                    Thao tác
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gia) VNĐ
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                    <td class="text-center">
+                        @*<button class="btn btn-outline-success">@Html.ActionLink("Cập nhật", "Edit", new { id = item.MaSanPham })</button>*@
+                        <button class="btn btn-outline-success capnhat" value="@Html.DisplayFor(modelItem => item.MaSanPham)">Cập nhật</button>
+                        <button class="btn btn-outline-danger xoa" style="color:black; font-weight:bold" value="@Html.DisplayFor(modelItem => item.MaSanPham)">Xóa</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        // Them san pham
+        $('#huy').click(function () {
+            $("#containerModal").removeClass('d-block');
+        })
+        $('.them').click(function () {
+            $("#containerModal").addClass('d-block');
+            let str = "/Admin/SanPham/Createsp/";
+            $("#modal-open").load(str);
+        })
+
+        // Xoa san pham
+        $('#huydelete').click(function () {
+            $("#conternetDelete").addClass('d-none');
+        })
+        $('.xoa').each(function (index, value) {
+
+            $(value).click(function () {
+                $("#conternetDelete").removeClass('d-none');
+                let deletesp = "/Admin/SanPham/Delete/" + $(value).val();
+                console.log($(value).val());
+                $("#modal-delete").load(deletesp);
+            })
+        })
+
+        // Cap nhat san pham
+        $('#huy-update').click(function () {
+            $("#modal-updatebigsp").removeClass('d-block');
+        })
+        $('.capnhat').each(function (index, value) {
+
+            $(value).click(function () {
+                $("#modal-updatebigsp").addClass('d-block');
+                let updatesp = "/Admin/SanPham/UpdateSP/" + $(value).val();
+                console.log($(value).val());
+                $("#modal-updatesp").load(updatesp);
+            })
+        })
+    })
+</script>

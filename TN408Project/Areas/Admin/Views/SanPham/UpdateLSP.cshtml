@@ -1,0 +1,21 @@
+﻿@model TN408Project.DataDB.LoaiSanPham
+
+@{
+    Layout = null;
+}
+<p>Tên loại sản phẩm:</p>
+<div class="row w-100">
+    <div>
+        <form asp-action="UpdateLSP">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex ">
+
+                <input asp-for="TenLoaiSanPham" class="form-control" />
+                <span asp-validation-for="TenLoaiSanPham" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top:5px">
+                <input type="submit" value="Lưu" class="btn btn-outline-success mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
